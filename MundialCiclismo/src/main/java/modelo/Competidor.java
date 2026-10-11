@@ -14,6 +14,11 @@ public class Competidor extends Atleta {
 
     public int getRanking() { return ranking; }
 
+    // === MEJORA AÑADIDA: Cálculo de IMC (Índice de Masa Corporal) ===
+    public double calcularIMC() {
+        return this.peso / (this.estatura * this.estatura);
+    }
+
     // === SOBRECARGA 1 (Overload) ===
     public void actualizarRanking(int puntosObtenidos) {
         this.ranking += puntosObtenidos;
@@ -36,7 +41,10 @@ public class Competidor extends Atleta {
     // === SOBREESCRITURA (Override) ===
     @Override
     public String toString() {
-        // Concatenando con super.toString() como exige el documento
-        return super.toString() + "\n   └-> Ranking/Puntos: " + ranking + " | Estatura: " + estatura + "m | Peso: " + peso + "kg";
+        // Formateamos el IMC para que solo tenga 2 decimales
+        String imcFormateado = String.format("%.2f", calcularIMC());
+        
+        // Concatenando con super.toString() e incluyendo el nuevo cálculo de IMC
+        return super.toString() + "\n   └-> Puntos: " + ranking + " | Estatura: " + estatura + "m | Peso: " + peso + "kg | IMC Deportivo: " + imcFormateado;
     }
 }
